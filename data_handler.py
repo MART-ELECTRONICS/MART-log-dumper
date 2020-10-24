@@ -10,7 +10,7 @@ def get_column_names(filename):
 	return list(df.columns)
 
 def map_units(filename):
-	doc = open('telemetry.csv', encoding = 'utf-8')
+	doc = open(filename, encoding = 'utf-8')
 	lines = doc.readlines()
 	titles = lines[1].strip().replace('"', '').split(',')
 	units = lines[2].strip().replace('"', '').split(',')
