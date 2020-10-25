@@ -1,8 +1,8 @@
-# MART TELEMETRY TOOL
+# MART log dumper
 
 ![icon](assets/icon.png)
 
-MART TELEMETRY TOOL is a software developed for the MART Formula Student team at the University of Malaga. Its utility is to dump data obtained from the car's ECU, a Link G4.
+MART log dumper is a software developed for the MART Formula Student team at the University of Malaga. Its utility is to dump data obtained from the car's ECU, a Link G4.
 
 The following Python libraries are used:
 
