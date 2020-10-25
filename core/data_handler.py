@@ -6,7 +6,7 @@ def read_csv(filename):
 	return df
 
 def get_column_names(filename):
-	df = readexit(filename, index_col=0, skiprows = [0,2])
+	df = read(filename, index_col=0, skiprows = [0,2])
 	return list(df.columns)
 
 def map_units(filename):
