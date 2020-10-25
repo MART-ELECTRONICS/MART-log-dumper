@@ -12,3 +12,5 @@ plot_palette = [
     (255,255,153),
     (177,89,40)
 ]
+
+mart_url = 'https://martformulastudent.com/'
