@@ -1,11 +1,11 @@
-import webbrowser
+from sys import exit
+from webbrowser import open
+
+import pyqtgraph as pg
 from PyQt5 import QtCore, QtGui, QtWidgets
 from pyqtgraph import PlotWidget, plot
-from webbrowser import open
-from sys import exit
-import pyqtgraph as pg
-import data_handler
-import ui
+
+from core import data_handler, ui
 
 
 class Ui_MainWindow(object):
@@ -34,9 +34,11 @@ class Ui_MainWindow(object):
 
         self.actionSobre_MART = QtWidgets.QAction(MainWindow)
         self.actionSobre_MART.setObjectName("actionSobre_MART")
-        self.actionSobre_MART.triggered.connect(lambda: webbrowser.open(ui.mart_url))
+        self.actionSobre_MART.triggered.connect(
+            lambda: webbrowser.open(ui.mart_url))
         mart_icon = QtGui.QIcon()
-        mart_icon.addPixmap(QtGui.QPixmap("./assets/mart_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        mart_icon.addPixmap(QtGui.QPixmap(
+            "./assets/mart_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSobre_MART.setIcon(mart_icon)
 
         self.actionSobre_MLD = QtWidgets.QAction(MainWindow)
@@ -45,7 +47,8 @@ class Ui_MainWindow(object):
 
         self.actionAbrir_archivo = QtWidgets.QAction(MainWindow)
         self.actionAbrir_archivo.setObjectName("actionAbrir_archivo")
-        self.actionAbrir_archivo.triggered.connect(lambda: openFileNamesDialog(self))
+        self.actionAbrir_archivo.triggered.connect(
+            lambda: openFileNamesDialog(self))
 
         self.actionSalir = QtWidgets.QAction(MainWindow)
         self.actionSalir.setObjectName("actionSalir")
@@ -59,7 +62,6 @@ class Ui_MainWindow(object):
         self.menuAyuda.addAction(self.actionSobre_MLD)
         self.menubar.addAction(self.menuArchivo.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
-
 
         # Central widget
 
@@ -198,7 +200,8 @@ class Ui_MainWindow(object):
 
                 for i in data_handler.get_column_names(files[0]):
                     c = QtWidgets.QCheckBox(f"{i}")
-                    c.stateChanged.connect(lambda: plot_data(self, get_checkboxes(self)))
+                    c.stateChanged.connect(
+                        lambda: plot_data(self, get_checkboxes(self)))
                     self.verticalLayout_2.addWidget(c)
                     self.checks.append(c)
 
@@ -241,10 +244,14 @@ class Ui_MainWindow(object):
         self.menuArchivo.setTitle(_translate("MainWindow", "Archivo"))
         self.menuAyuda.setTitle(_translate("MainWindow", "Ayuda"))
         self.actionSobre_MART.setText(_translate("MainWindow", "Sobre MART"))
-        self.actionSobre_MLD.setText(_translate("MainWindow", "Sobre MART log dumper"))
-        self.actionAbrir_archivo.setText(_translate("MainWindow", "Abrir archivo"))
+        self.actionSobre_MLD.setText(_translate(
+            "MainWindow", "Sobre MART log dumper"))
+        self.actionAbrir_archivo.setText(
+            _translate("MainWindow", "Abrir archivo"))
         self.actionSalir.setText(_translate("MainWindow", "Salir"))
-        self.actionAbrir_archivo.setShortcut(_translate("MainWindow", "Ctrl+O"))
+        self.actionAbrir_archivo.setShortcut(
+            _translate("MainWindow", "Ctrl+O"))
+
 
 class AboutDialog(object):
     def setupUi(self, Dialog):
@@ -252,7 +259,8 @@ class AboutDialog(object):
         Dialog.setWindowModality(QtCore.Qt.NonModal)
         Dialog.setEnabled(True)
         Dialog.resize(453, 223)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
@@ -260,7 +268,8 @@ class AboutDialog(object):
         Dialog.setMinimumSize(QtCore.QSize(453, 223))
         Dialog.setMaximumSize(QtCore.QSize(453, 223))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./assets/mart_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("./assets/mart_icon.png"),
+                       QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
 
         self.label = QtWidgets.QLabel(Dialog)
@@ -303,11 +312,15 @@ class AboutDialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Sobre MART log dumper"))
         self.label.setText(_translate("Dialog", "Versión 1.0"))
-        self.label_2.setText(_translate("Dialog", "MART log dumper es una herramienta gráfica para volcar y visualizar los datos de la ECU del monoplaza."))
-        self.label_3.setText(_translate("Dialog", "Copyright (C) 2020 - MART FS"))
-        self.label_4.setText(_translate("Dialog", "<html><head/><body><p>Programado por <a href=\"https://olegbrz.github.io/\"><span style=\" text-decoration: underline; color:#0000ff;\">Oleg Brezitskyy</span></a></p></body></html>"))
+        self.label_2.setText(_translate(
+            "Dialog", "MART log dumper es una herramienta gráfica para volcar y visualizar los datos de la ECU del monoplaza."))
+        self.label_3.setText(_translate(
+            "Dialog", "Copyright (C) 2020 - MART FS"))
+        self.label_4.setText(_translate(
+            "Dialog", "<html><head/><body><p>Programado por <a href=\"https://olegbrz.github.io/\"><span style=\" text-decoration: underline; color:#0000ff;\">Oleg Brezitskyy</span></a></p></body></html>"))
         self.label_5.setText(_translate("Dialog", "MART log dumper"))
         self.pushButton.setText(_translate("Dialog", "Cerrar"))
+
 
 if __name__ == "__main__":
     import sys
@@ -316,7 +329,8 @@ if __name__ == "__main__":
     window = Ui_MainWindow()
     window.setupUi(MainWindow)
     MainWindow.show()
-    Dialog = QtWidgets.QDialog(None, QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
+    Dialog = QtWidgets.QDialog(None, QtCore.Qt.WindowSystemMenuHint |
+                               QtCore.Qt.WindowTitleHint | QtCore.Qt.WindowCloseButtonHint)
     about = AboutDialog()
     about.setupUi(Dialog)
     sys.exit(app.exec_())
