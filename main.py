@@ -35,7 +35,7 @@ class Ui_MainWindow(object):
         self.actionSobre_MART = QtWidgets.QAction(MainWindow)
         self.actionSobre_MART.setObjectName("actionSobre_MART")
         self.actionSobre_MART.triggered.connect(
-            lambda: webbrowser.open(ui.mart_url))
+            lambda: open(ui.mart_url))
         mart_icon = QtGui.QIcon()
         mart_icon.addPixmap(QtGui.QPixmap(
             "./assets/mart_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
