@@ -1,12 +1,12 @@
-import pandas as pd
+from pandas import read_csv as read
 
 
 def read_csv(filename):
-	df = pd.read_csv(filename,index_col=0, skiprows = [0,2])
+	df = read(filename,index_col=0, skiprows = [0,2])
 	return df
 
 def get_column_names(filename):
-	df = pd.read_csv(filename, index_col=0, skiprows = [0,2])
+	df = readexit(filename, index_col=0, skiprows = [0,2])
 	return list(df.columns)
 
 def map_units(filename):

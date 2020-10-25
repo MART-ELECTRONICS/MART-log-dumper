@@ -1,9 +1,8 @@
 from sys import exit
 from webbrowser import open
 
-import pyqtgraph as pg
+from pyqtgraph import PlotWidget, mkPen, InfiniteLine
 from PyQt5 import QtCore, QtGui, QtWidgets
-from pyqtgraph import PlotWidget, plot
 
 from core import data_handler, ui
 
@@ -86,7 +85,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
 
-        self.widget = pg.PlotWidget()
+        self.widget = PlotWidget()
         self.widget.setObjectName("widget")
         self.widget.showGrid(x=True, y=True)
 
@@ -223,11 +222,11 @@ class Ui_MainWindow(object):
             for i in to_plot:
                 # plot data: x, y values
                 y = list(self.df[i])
-                self.widget.plot(x, y, pen=pg.mkPen(
+                self.widget.plot(x, y, pen=mkPen(
                     color=ui.plot_palette[j % len(ui.plot_palette)], width=2, name=i))
                 j += 1
 
-            self.vLine = pg.InfiniteLine(pos=0, angle=90, movable=True)
+            self.vLine = InfiniteLine(pos=0, angle=90, movable=True)
             self.vLine.sigPositionChanged.connect(lambda: set_spinbox(self))
             self.vLine.sigPositionChanged.connect(
                 lambda: set_cursor_values(self))
